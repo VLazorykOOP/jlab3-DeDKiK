@@ -76,8 +76,96 @@ public class Main {
 }
 	    
 	    
-
+// Завдання 2 
 	    
+abstract class Body {
+    abstract double getSurfaceArea();
+    abstract double getVolume();
+}
+
+class Parallelepiped extends Body {
+    private double a, b, c;
+
+    public Parallelepiped(double a, double b, double c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    @Override
+    public double getSurfaceArea() {
+        return 2 * (a * b + b * c + a * c);
+    }
+
+    @Override
+    public double getVolume() {
+        return a * b * c;
+    }
+
+    @Override
+    public String toString() {
+        return "Parallelepiped: a = " + a + ", b = " + b + ", c = " + c +
+                ", surface area = " + getSurfaceArea() + ", volume = " + getVolume();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Parallelepiped) {
+            Parallelepiped other = (Parallelepiped) obj;
+            return this.a == other.a && this.b == other.b && this.c == other.c;
+        }
+        return false;
+    }
+}
+
+class Ball extends Body {
+    private double radius;
+    private static final double PI = 3.14159;
+
+    public Ball(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double getSurfaceArea() {
+        return 4 * PI * radius * radius;
+    }
+
+    @Override
+    public double getVolume() {
+        return 4 * PI * radius * radius * radius / 3;
+    }
+
+    @Override
+    public String toString() {
+        return "Ball: radius = " + radius + ", surface area = " + getSurfaceArea() + ", volume = " + getVolume();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Ball) {
+            Ball other = (Ball) obj;
+            return this.radius == other.radius;
+        }
+        return false;
+    }
+}
+
+public class dva {
+    public static void main(String[] args) {
+        Body[] bodies = new Body[] {
+                new Parallelepiped(3, 4, 5),
+                new Ball(2.5),
+                new Parallelepiped(2, 3, 4),
+                new Ball(1.5),
+        };
+
+        for (Body body : bodies) {
+            System.out.println(body);
+        }
+    }
+}
+
 	    
 	    
     }
